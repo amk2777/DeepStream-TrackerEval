@@ -39,7 +39,9 @@ The Kitti Evaluation set is recorded at 10 FPS. So we need to create a video seq
 Inside each of the subsequence image frame folders run:
 
 ```bash
-ffmpeg -framerate 10 -i %6d.jpg 0007.mp4
+##ffmpeg -framerate 10 -i %6d.jpg 0007.mp4
+ffmpeg -framerate 10 -i %06d.png -c:v libx264 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -profile:v high -crf 20 -pix_fmt yuv420p 0020.mp4
+
 ```
 
 Since the kitti files have 6 digits we insert %6d.  Change the 0007.mp4 to the desired file name
